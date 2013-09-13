@@ -17,12 +17,11 @@ class Sequenced
 	include Mongoid::Document
 	include Mongoid::Sequence
 	
-	field :my_sequence, :type => Integer
 	sequence :my_sequence
 end
 
 s1 = Sequenced.create
-s1.sequence #=> 1
+s1.my_sequence #=> 1
 
 s2 = Sequenced.create
 s2.sequence #=> 2 # and so on

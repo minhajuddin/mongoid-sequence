@@ -6,7 +6,7 @@ module Mongoid
     extend ActiveSupport::Concern
 
     included do
-      set_callback :validate, :before, :set_sequence, :unless => :persisted?
+      before_create :set_sequence
     end
 
     module ClassMethods
@@ -15,6 +15,7 @@ module Mongoid
       def sequence(field)
         self.sequence_fields ||= []
         self.sequence_fields << field
+        self.field field, :type => Integer
       end
     end
 
